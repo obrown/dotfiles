@@ -19,3 +19,4 @@ export CLICOLOR=1
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias v="vim"
+alias ls="ls --color"
