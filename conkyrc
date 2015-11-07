@@ -1,0 +1,28 @@
+out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+
+update_interval 2.0
+
+total_run_times 0
+
+short_units yes
+if_up_strictness address
+use_spacer left
+override_utf8_locale no
+cpu_avg_samples 2
+
+TEXT
+
+# JSON for i3bar
+
+[
+  { "full_text" : "RAM ${memperc}%", "color" : "\#c9c9c9"},
+  { "full_text" : "CPU ${loadavg}", "color" : "\#c9c9c9"},
+  { "full_text" : "IP ${addr enp3s0}", "color" : "\#c9c9c9"},
+  { "full_text" : "d:${downspeed enp3s0}", "color" : "\#c9c9c9"},
+  { "full_text" : "u:${upspeed enp3s0}", "color" : "\#c9c9c9"},
+  { "full_text" : "${time %R}", "color" : "\#ffffff"}
+],
