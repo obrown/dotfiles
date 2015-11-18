@@ -1,8 +1,13 @@
-# Base16 Shell
 BASE16_SHELL="$HOME/.dotfiles/base16-shell.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
-HIST_STAMPS="mm/dd/yyyy"
+# autoload functions
+autoload -U colors && colors
+autoload -U compinit && compinit
+
+# left and right prompt
+PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg_no_bold[yellow]%}%1~ %{$reset_color%}%#"
+RPROMPT="[%!]"
 
 # exported options
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -15,6 +20,9 @@ export LSCOLORS=Gxfxcxdxbxegedabagacad
 export LESS='--ignore-case --raw-control-chars'
 export PAGER='less'
 export EDITOR='vim'
+
+# input handling
+bindkey -e # don't use vim line editing
 
 # zsh options
 setopt AUTO_PUSHD         # push directory when changing directory
@@ -36,14 +44,6 @@ setopt PRINT_EXIT_VALUE   # print non-zero exit values
 setopt NO_BEEP            # don't beep on errors
 
 setopt PROMPT_SUBST       # enable prompt substitutiion
-
-# autoload functions
-autoload -U colors && colors
-autoload -U compinit && compinit
-
-# left and right prompt
-PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg_no_bold[yellow]%}%1~ %{$reset_color%}\$vcs_info_msg_0_%#"
-RPROMPT="[%!]"
 
 # aliases
 alias ..='cd ..'
