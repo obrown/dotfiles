@@ -2,11 +2,6 @@
 BASE16_SHELL="$HOME/.dotfiles/base16-shell.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
-autoload -U colors && colors
-
-PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg_no_bold[yellow]%}%1~ %{$reset_color%}%#"
-RPROMPT="[%!]"
-
 HIST_STAMPS="mm/dd/yyyy"
 
 # exported options
@@ -21,7 +16,7 @@ export LESS='--ignore-case --raw-control-chars'
 export PAGER='less'
 export EDITOR='vim'
 
- #zsh options
+# zsh options
 setopt AUTO_PUSHD         # push directory when changing directory
 setopt PUSHD_IGNORE_DUPS  # don't push the same directory twice
 
@@ -40,7 +35,38 @@ setopt PRINT_EXIT_VALUE   # print non-zero exit values
 
 setopt NO_BEEP            # don't beep on errors
 
+setopt PROMPT_SUBST       # enable prompt substitutiion
+
+# autoload functions
+autoload -U colors && colors
+autoload -U compinit && compinit
+
+# left and right prompt
+PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg_no_bold[yellow]%}%1~ %{$reset_color%}\$vcs_info_msg_0_%#"
+RPROMPT="[%!]"
+
 # aliases
-alias v="vim"
-alias ls="ls --color"
-alias lab="ssh shell3.doc.ic.ac.uk"
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+alias lh='ls -d .*'
+alias l='ls -alh'
+
+alias man='man -a'
+
+alias grep='egrep'
+
+alias lab='ssh shell3.doc.ic.ac.uk'
+
+alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+
+alias v='vim'
+alias gm='git commit -m'
+alias gp='git push'
+alias ga='git add'
+alias gs='git status'
+
+alias tmux='TERM=screen-256color-bce tmux'
+alias ls='ls --color'
