@@ -7,17 +7,21 @@ autoload -U colors && colors
 PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg_no_bold[yellow]%}%1~ %{$reset_color%}%#"
 RPROMPT="[%!]"
 
-# Uncomment following line if you want to  shown in the command execution time stamp 
-# in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
-# yyyy-mm-dd
 HIST_STAMPS="mm/dd/yyyy"
 
-# User configuration
+# exported options
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export MANPATH="/usr/local/man:$MANPATH"
-export CLICOLOR=1
 
-# zsh options
+export TERM=xterm-256color
+export CLICOLOR=1
+export LSCOLORS=Gxfxcxdxbxegedabagacad
+
+export LESS='--ignore-case --raw-control-chars'
+export PAGER='less'
+export EDITOR='vim'
+
+ #zsh options
 setopt AUTO_PUSHD         # push directory when changing directory
 setopt PUSHD_IGNORE_DUPS  # don't push the same directory twice
 
