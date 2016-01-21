@@ -34,10 +34,10 @@ set incsearch
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable 
-
-let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-default
 set background=dark
+set t_Co=16
+
+colorscheme solarized
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8

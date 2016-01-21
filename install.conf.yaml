@@ -11,6 +11,12 @@
     ~/.zshrc:
       force: true
       path: zshrc
+    ~/.xinitrc:
+      force: true
+      path: xinitrc
+    ~/.Xresources:
+      force: true
+      path: Xresources
     ~/.i3:
       force: true
       path: i3

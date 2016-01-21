@@ -1,6 +1,3 @@
-BASE16_SHELL="$HOME/.dotfiles/base16-shell.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-
 # autoload functions
 autoload -U colors && colors
 autoload -U compinit && compinit
@@ -63,7 +60,7 @@ alias lab='ssh shell3.doc.ic.ac.uk'
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 
 alias v='vim'
-alias gm='git commit -m'
+alias gcm='git commit -m'
 alias gp='git push'
 alias ga='git add'
 alias gs='git status'
