@@ -35,9 +35,9 @@ set incsearch
 " Enable syntax highlighting
 syntax enable 
 set background=dark
-set t_Co=16
+" set t_Co=256
 
-colorscheme solarized
+colorscheme gruvbox
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -165,3 +165,48 @@ endfunction
 " Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 execute pathogen#infect()
+
+" Plugin options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+let g:airline_theme='gruvbox'
+
+
+" gVim options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set guioptions+=c
+set guioptions+=R
+set guioptions-=m
+set guioptions-=r
+set guioptions-=b
+set guioptions-=T
+set guioptions-=R
+set guioptions-=L
+set guioptions-=e
