@@ -1,4 +1,6 @@
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
-sh ~/.fehbg &
+setxkbmap gb
+
+xsetroot -solid '#191919' &
 exec i3
