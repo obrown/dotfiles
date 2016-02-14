@@ -14,11 +14,11 @@
     ~/.xinitrc:
       force: true
       path: xinitrc
-    ~/.Xresources:
-      force: true
-      path: Xresources
     ~/.i3:
       force: true
       path: i3
+    ~/.config/termite/config:
+      force: true
+      path: termite
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
