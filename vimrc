@@ -1,3 +1,7 @@
+" Load plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+execute pathogen#infect() 
+
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
@@ -35,7 +39,7 @@ set incsearch
 " Enable syntax highlighting
 syntax enable 
 set background=dark
-" set t_Co=256
+set t_Co=256
 
 colorscheme gruvbox
 
@@ -87,29 +91,19 @@ autocmd BufReadPost *
 " Remember info about open buffers on close
 set viminfo^=%
 
-
 " Status line
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Always show the status line
 set laststatus=2
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ Col:\ %c
 
+" find ctag file between here and home directory
+set tags+=tags;$HOME
 
 "  Helper Functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Returns true if on! NumberToggle()
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
-
-nnoremap <C-n> :call NumberToggle()<cr>
 
 function! HasPaste()
     if &paste
@@ -118,10 +112,14 @@ function! HasPaste()
     return ''
 endfunction
 
-" Map for toggling hex mode 
-nnoremap <C-h> :call ToggleHex()<cr>
+function! TogglePaste()
+  if(&paste == 1)
+    set nopaste
+  else
+    set paste
+  endif
+endfunc
 
-" helper function to toggle hex mode
 function ToggleHex()
   " hex mode should be considered a read-only operation
   " save values for modified and read-only for restoration later,
@@ -161,11 +159,6 @@ function ToggleHex()
   let &modifiable=l:oldmodifiable
 endfunction
 
-
-" Plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-execute pathogen#infect()
-
 " Plugin options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline_powerline_fonts = 1
@@ -198,7 +191,6 @@ let g:airline_symbols.linenr = ''
 
 let g:airline_theme='gruvbox'
 
-
 " gVim options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set guioptions+=c
@@ -210,3 +202,19 @@ set guioptions-=T
 set guioptions-=R
 set guioptions-=L
 set guioptions-=e
+
+" Key bindings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <Leader>nt :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>tb :TagbarToggle<CR>
+
+nnoremap <silent> <Leader>hm :call ToggleHex()<CR>
+nnoremap <silent> <Leader>pm :call TogglePaste()<CR>
+
+nnoremap <silent> <C-h> <C-w>h
+nnoremap <silent> <C-j> <C-w>j
+nnoremap <silent> <C-k> <C-w>k
+nnoremap <silent> <C-l> <C-w>l
+
+" avoid accidently entering Ex mode
+nnoremap Q <nop>
