@@ -17,6 +17,11 @@ export LSCOLORS=Gxfxcxdxbxegedabagacad
 export LESS='--ignore-case --raw-control-chars'
 export PAGER='less'
 export EDITOR='vim'
+export VISUAL='vim'
+
+export HISTFILE="$HOME/.zhistory"
+export HISTSIZE=1000
+export SAVEHIST=1000
 
 # input handling
 bindkey -e # don't use vim line editing
