@@ -5,9 +5,6 @@
     ~/.vimrc:
       relink: true
       path: vimrc
-    ~/.conkyrc:
-      relink: true
-      path: conkyrc
     ~/.zshrc:
       force: true
       path: zshrc
