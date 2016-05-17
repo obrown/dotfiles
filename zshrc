@@ -4,7 +4,7 @@ autoload -U compinit && compinit
 
 # left and right prompt
 PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg_no_bold[yellow]%}%1~ %{$reset_color%}%#"
-RPROMPT="[%!]"
+RPROMPT=""
 
 # exported options
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -59,10 +59,6 @@ alias l='ls -alh'
 alias man='man -a'
 
 alias grep='egrep'
-
-alias lab='ssh shell3.doc.ic.ac.uk'
-
-alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 
 alias v='vim'
 alias gcm='git commit -m'
