@@ -77,6 +77,8 @@ set colorcolumn=80
 
 " Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" map leader to space
+let mapleader = "\<Space>"
 
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
