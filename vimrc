@@ -1,18 +1,15 @@
 " Load plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-execute pathogen#infect() 
+execute pathogen#infect()
 
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
-set history=500
+set history=1024
 
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
-
-" Set to auto read when a file is changed from the outside
-set autoread
 
 " VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -32,14 +29,19 @@ set ignorecase
 set smartcase
 
 " Makes search act like search in modern browsers
-set incsearch 
+set incsearch
+
+" Don't beep
+set visualbell
+set noerrorbells
 
 " Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
-syntax enable 
+syntax enable
+
 set background=dark
-set t_Co=256
+set termguicolors
 
 colorscheme gruvbox
 
@@ -56,24 +58,30 @@ set nobackup
 set nowb
 set noswapfile
 
+" Save undos after file closes
+set undodir=$HOME/.vim/undo
+set undofile
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
 " Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
 set expandtab
 
-" Be smart when using tabs ;)
-set smarttab
-
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
+" 1 tab == 2 spaces
+set shiftwidth=2
+set tabstop=2
 
 " Linebreak on 120 characters
 set lbr
-set tw=120
 
 " Mark the 80th character
-set colorcolumn=80
+set colorcolumn=120
+
+" More normal regexs
+set magic
 
 " Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -119,6 +127,23 @@ function! TogglePaste()
     set nopaste
   else
     set paste
+  endif
+endfunc
+
+function! ToggleRelativeNumbers()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+function! ToggleShowWhitespace()
+  if(&list == 1)
+    set nolist
+  else
+    set list
+    set listchars=tab:▸\ ,eol:¬,trail:.
   endif
 endfunc
 
@@ -208,15 +233,24 @@ set guioptions-=e
 " Key bindings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <Leader>nt :NERDTreeToggle<CR>
-nnoremap <silent> <Leader>tb :TagbarToggle<CR>
-
 nnoremap <silent> <Leader>hm :call ToggleHex()<CR>
 nnoremap <silent> <Leader>pm :call TogglePaste()<CR>
+nnoremap <silent> <Leader>rn :call ToggleRelativeNumbers()<CR>
+nnoremap <silent> <Leader>ws :call ToggleShowWhitespace()<CR>
 
 nnoremap <silent> <C-h> <C-w>h
 nnoremap <silent> <C-j> <C-w>j
 nnoremap <silent> <C-k> <C-w>k
 nnoremap <silent> <C-l> <C-w>l
 
+" no shift required
+nnoremap ; :
+
 " avoid accidently entering Ex mode
 nnoremap Q <nop>
+
+" Commands
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Forgotten sudo
+command W w !sudo tee % > /dev/null
