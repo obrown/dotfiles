@@ -1,20 +1,22 @@
-# global modifier key
 set $mod Mod4
+set $ing 10
+set $oug 4
 
-# default font for window titles and bar
-font pango:inconsolata 10 
-
-# use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+# --------------------------------------------
+#           Default Mode Keybindings
+# --------------------------------------------
 
 # start a terminal
 bindsym $mod+Return exec termite
 
-# kill focused window
-bindsym $mod+Shift+q kill
-
 # start program launcher
 bindsym $mod+d exec rofi -show run
+
+# lock the screen
+bindsym $mod+Escape exec i3lock --show-failed-attempts --color 696969
+
+# kill focused window
+bindsym $mod+Shift+q kill
 
 # change focus
 bindsym $mod+h focus left
@@ -22,23 +24,11 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternative cursor keys
-#bindsym $mod+Left focus left
-#bindsym $mod+Down focus down
-#bindsym $mod+Up focus up
-#bindsym $mod+Right focus right
-
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-
-# alternative cursor keys
-#bindsym $mod+Shift+Left move left
-#bindsym $mod+Shift+Down move down
-#bindsym $mod+Shift+Up move up
-#bindsym $mod+Shift+Right move right
 
 # split horizontally
 bindsym $mod+b split h
@@ -56,6 +46,7 @@ bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+floating_modifier $mod
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -99,37 +90,54 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Sure you want to exit?' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# options for resize mode
-mode "resize" {
-        # vim style resize bindings
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym j resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+# sub window
+bindsym $mod+Shift+s exec "i3-msg 'floating toggle; sticky toggle; resize shrink width 10000px; resize grow width 800px; resize shrink height 10000px; resize grow height 600;move position 10px 10px;'"
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+# --------------------------------------------
+#        Mode specific key bindings
+# --------------------------------------------
+
+mode "resize" {
+  # vim style resize bindings
+  bindsym h resize shrink width 10 px or 10 ppt
+  bindsym k resize grow height 10 px or 10 ppt
+  bindsym j resize shrink height 10 px or 10 ppt
+  bindsym l resize grow width 10 px or 10 ppt
+
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
-# enter resize mode for current window
+mode "gaps" {
+  bindsym 0 mode "default", gaps inner all set 0, gaps outer all set 0
+  bindsym 1 mode "default", gaps inner all set $ing, gaps outer all set $oug
+}
+
+mode "music" {
+  bindsym l exec cmus-remote --next
+  bindsym h exec cmus-remote --prev
+
+  bindsym p exec cmus-remote --play
+  bindsym u exec cmus-remote --pause
+  bindsym s exec cmus-remote --stop
+
+  bindsym m exec cmus-remote --volume +10%
+  bindsym n exec cmus-remote --volume -10%
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+bindsym $mod+g mode "gaps"
+bindsym $mod+m mode "music"
 bindsym $mod+r mode "resize"
 
-# music controls
-bindsym $mod+m exec cmus-remote --next
-bindsym $mod+n exec cmus-remote --prev
+# --------------------------------------------
+#             Colours & Appearance
+# --------------------------------------------
 
-# window borders 
-new_window pixel 1
-new_float pixel 1
-
-# hide borders of windows
-hide_edge_borders none
-
-# colors
 # class                 border  backgr. text    indictr child_border
-
-# client which has focus
 client.focused          #5a647e #222222 #ffffff #5a647e #5a647e
 
 client.focused_inactive #2b2b2b #222222 #ffffff #2b2b2b #2b2b2b
@@ -139,3 +147,19 @@ client.placeholder      #2b2b2b #222222 #ffffff #2b2b2b #2b2b2b
 client.urgent           #da4939 #222222 #ffffff #da4939 #da4939
 
 client.background       #ffffff
+
+new_window pixel 1
+new_float pixel 1
+
+hide_edge_borders none
+
+font pango:inconsolata 10 
+
+# --------------------------------------------
+#                    Bar
+# --------------------------------------------
+
+#bar {
+#  i3bar_command lemonbar -B '#66000000'
+#  status_command exec ~/bin/bar
+#}
