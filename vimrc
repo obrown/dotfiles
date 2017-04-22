@@ -7,32 +7,41 @@ execute pathogen#infect()
 " Sets how many lines of history VIM has to remember
 set history=1024
 
+" don't redraw in macros
+set lazyredraw
+
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
 
 " VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
-
-" Show line numbers
+" Show line number
 set number
 
-"Always show current position
+" Highlight current line
+set cursorline
+
+" Highlight matching brackets
+set showmatch
+
+" Auto complete help for command
+set wildmenu
+
+" Show last entered command
+set showcmd
+
+" Show row, col in bar
 set ruler
 
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
-set smartcase
-
 " Makes search act like search in modern browsers
 set incsearch
 
 " Don't beep
-set visualbell
+set novisualbell
 set noerrorbells
 
 " Colors and Fonts
@@ -41,11 +50,10 @@ set noerrorbells
 syntax enable
 
 set background=dark
-set termguicolors
 
 colorscheme gruvbox
 
-" Set utf8 as standard encoding and en_US as the standard language
+" Set utf8 as standard encoding
 set encoding=utf8
 
 " Use Unix as the standard file type
@@ -70,14 +78,10 @@ set autoread
 " Use spaces instead of tabs
 set expandtab
 
-" 1 tab == 2 spaces
-set shiftwidth=2
-set tabstop=2
+" 2 spaces per tab
+set shiftwidth=2 tabstop=2 softtabstop=2
 
-" Linebreak on 120 characters
-set lbr
-
-" Mark the 80th character
+" Mark the 120th column
 set colorcolumn=120
 
 " More normal regexs
@@ -89,8 +93,8 @@ set magic
 let mapleader = "\<Space>"
 
 " Treat long lines as break lines (useful when moving around in them)
-map j gj
-map k gk
+nnoremap j gj
+nnoremap k gk
 
 " Return to last edit position when opening files
 autocmd BufReadPost *
@@ -132,7 +136,7 @@ endfunc
 
 function! ToggleRelativeNumbers()
   if(&relativenumber == 1)
-    set number
+    set norelativenumber
   else
     set relativenumber
   endif
@@ -188,35 +192,6 @@ endfunction
 
 " Plugin options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-
-" airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-
-let g:airline_theme='gruvbox'
 
 " gVim options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -237,20 +212,12 @@ nnoremap <silent> <Leader>hm :call ToggleHex()<CR>
 nnoremap <silent> <Leader>pm :call TogglePaste()<CR>
 nnoremap <silent> <Leader>rn :call ToggleRelativeNumbers()<CR>
 nnoremap <silent> <Leader>ws :call ToggleShowWhitespace()<CR>
+nnoremap <silent> <Leader>s :mksession!<CR>
 
 nnoremap <silent> <C-h> <C-w>h
 nnoremap <silent> <C-j> <C-w>j
 nnoremap <silent> <C-k> <C-w>k
 nnoremap <silent> <C-l> <C-w>l
 
-" no shift required
-nnoremap ; :
-
 " avoid accidently entering Ex mode
 nnoremap Q <nop>
-
-" Commands
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Forgotten sudo
-command W w !sudo tee % > /dev/null
