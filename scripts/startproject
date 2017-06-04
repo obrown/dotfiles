@@ -1,0 +1,56 @@
+#!/bin/bash
+set -euf -o pipefail
+
+display_usage() {
+	echo -e "Usage: startproject [TEMPLATE] [NAME] PATH" >&2
+}
+
+
+if [ $# -lt 2 ]; then # missing args
+  display_usage
+  exit 1
+fi
+
+TEMPLATE=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+TEMPLATE_PATH="$TEMPLATEPATH/$TEMPLATE"
+PROJECT_NAME="$2"
+if [ $# -eq 3 ]; then
+  PROJECT_PATH="$3"
+else
+  PROJECT_PATH="$PWD/$PROJECT_NAME"
+fi
+
+
+if [ -z "${TEMPLATEPATH:-}" ]; then # template path not set
+  echo "path to templates not set" >&2
+fi 
+
+if [ ! -d "$TEMPLATEPATH" ]; then # missing template dir
+  echo "template directory $TEMPLATEPATH does not exist" >&2
+  exit 1
+fi 
+
+if [ ! -d "$TEMPLATEPATH" ]; then # missing template dir
+  echo "template directory $TEMPLATEPATH does not exist" >&2
+  exit 1
+fi 
+
+if [ ! -d "$TEMPLATE_PATH" ]; then # missing template
+  echo "template $TEMPLATE does not exist" >&2
+  exit 1
+fi
+
+if [ -d "$PROJECT_PATH" ]; then # missing template
+  echo "$PROJECT_PATH already exists" >&2
+  exit 1
+fi
+
+mkdir "$PROJECT_PATH"
+cp "$TEMPLATE_PATH/gitignore" "$PROJECT_PATH/.gitignore"
+cp "$TEMPLATE_PATH/pre-commit-config.yaml" "$PROJECT_PATH/.pre-commit-config.yaml"
+touch "$PROJECT_PATH/README.md"
+
+source "$TEMPLATE_PATH/install.sh"
+
+cd "$PROJECT_PATH"
+git init > /dev/null

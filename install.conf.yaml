@@ -2,6 +2,8 @@
 - link:
     ~/.tmux.conf: tmux.conf
     ~/.vim: vim/
+    ~/bin: scripts/
+    ~/.templates: templates/
     ~/.vimrc:
       relink: true
       path: vimrc

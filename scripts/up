@@ -1,0 +1,8 @@
+#!/bin/bash
+LEVELS=$1
+
+WD=$PWD
+for ((i=1; i <= LEVELS; i++)); do
+    WD=$WD/..
+done
+cd $WD
