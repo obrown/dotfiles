@@ -10,6 +10,12 @@
     ~/.zshrc:
       force: true
       path: zshrc
+    ~/.commonrc:
+      force: true
+      path: commonrc
+    ~/.bashrc:
+      force: true
+      path: bashrc
     ~/.xinitrc:
       force: true
       path: xinitrc

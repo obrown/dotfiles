@@ -8,25 +8,6 @@ RPROMPT=""
 
 umask 0027
 
-# exported options
-export PATH="$HOME/bin:/usr/local/bin:$PATH"
-export MANPATH="/usr/local/man:$MANPATH"
-
-#export TERM=xterm-256color
-export CLICOLOR=1
-export LSCOLORS=Gxfxcxdxbxegedabagacad
-
-export LESS='--ignore-case --raw-control-chars'
-export PAGER='less'
-export EDITOR='vim'
-export VISUAL='vim'
-
-export HISTFILE="$HOME/.zhistory"
-export HISTSIZE=1000
-export SAVEHIST=1000
-
-export TEMPLATEPATH="$HOME/.templates"
-
 # input handling
 bindkey -e # don't use vim line editing
 
@@ -49,25 +30,5 @@ setopt NO_BEEP            # don't beep on errors
 
 setopt PROMPT_SUBST       # enable prompt substitutiion
 
-# aliases
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
 
-alias lh='ls -d .*'
-alias l='ls -alh'
-
-alias man='man -a'
-
-alias grep='egrep'
-
-alias v='nvim'
-alias gcm='git commit -m'
-alias gp='git push'
-alias ga='git add'
-alias gs='git status'
-
-alias tmux='TERM=screen-256color-bce tmux'
-alias ls='ls --color'
-alias up='. up'
+source $HOME/.commonrc
