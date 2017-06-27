@@ -1,6 +1,12 @@
-" Load plugins
+" Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-execute pathogen#infect()
+execute pathogen#interpose('bundle/nerdtree')
+execute pathogen#interpose('bundle/nerdcommenter')
+execute pathogen#interpose('bundle/supertab')
+execute pathogen#interpose('bundle/vim-easymotion')
+execute pathogen#interpose('bundle/vim-addon-mw-utils')
+execute pathogen#interpose('bundle/vim-snipmate')
+execute pathogen#interpose('bundle/tlib_vim')
 
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -13,6 +19,9 @@ set lazyredraw
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
+
+" Better mouse copying
+set mouse=a
 
 " VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -43,6 +52,9 @@ set incsearch
 " Don't beep
 set novisualbell
 set noerrorbells
+
+" Complete with longest common prefix, always show menu
+set completeopt=menuone,longest
 
 " Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
