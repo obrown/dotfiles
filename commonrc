@@ -43,7 +43,6 @@ alias ga='git add'
 alias gd='git diff'
 alias gs='git status'
 
-alias ls='ls --color=auto --hide=__pycache__'
 alias grep='grep --color=auto'
 
 alias tmux='TERM=screen-256color-bce tmux'
@@ -52,13 +51,17 @@ alias up='. up'
 alias p='python3'
 
 
-# other
-source $HOME/.local/bin/virtualenvwrapper.sh
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  alias ls='ls --color=auto --hide=__pycache__'
+fi
 
-setxkbmap -option caps:escape
+# other
+if [ -f "$HOME/.local/bin/virtualenvwrapper.sh" ]; then source $HOME/.local/bin/virtualenvwrapper.sh; fi
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then setxkbmap -option caps:escape; fi
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/oliver/google-cloud-sdk/path.zsh.inc' ]; then source '/home/oliver/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then source "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/oliver/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/oliver/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then source "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
