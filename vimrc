@@ -1,12 +1,6 @@
 " Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-execute pathogen#interpose('bundle/nerdtree')
-execute pathogen#interpose('bundle/nerdcommenter')
-execute pathogen#interpose('bundle/supertab')
-execute pathogen#interpose('bundle/vim-easymotion')
-execute pathogen#interpose('bundle/vim-addon-mw-utils')
-execute pathogen#interpose('bundle/vim-snipmate')
-execute pathogen#interpose('bundle/tlib_vim')
+execute pathogen#infect()
 
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -204,6 +198,7 @@ endfunction
 
 " Plugin options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let NERDTreeIgnore = ['\.pyc$', '__pycache__', '\.o']
 
 " gVim options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
