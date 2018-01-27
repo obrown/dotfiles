@@ -6,8 +6,6 @@ autoload -U compinit && compinit
 PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg_no_bold[yellow]%}%1~ %{$reset_color%}%#"
 RPROMPT=""
 
-umask 0027
-
 # input handling
 bindkey -e # don't use vim line editing
 
@@ -29,6 +27,5 @@ setopt ALWAYS_TO_END      # move cursor to end on autocomplete
 setopt NO_BEEP            # don't beep on errors
 
 setopt PROMPT_SUBST       # enable prompt substitutiion
-
 
 source $HOME/.commonrc

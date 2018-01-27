@@ -1,4 +1,5 @@
 [options]
+font                = Inconsolata-dz for Powerline 11
 resize_grip         = false
 scroll_on_output    = false
 scroll_on_keystroke = true
@@ -54,4 +55,3 @@ color14 = #519f50
 # white
 color7  = #e6e1dc
 color15 = #f9f7f3
-

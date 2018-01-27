@@ -1,6 +1,7 @@
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
-setxkbmap gb
-
-xsetroot -solid '#191919' &
+setxkbmap gb -option caps:escape &
+compton --vsync opengl -b &
+sh ~/.fehbg &
+# (bar | lemonbar -B '#66000000') &
 exec i3
